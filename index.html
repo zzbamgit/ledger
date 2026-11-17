@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja"><head>
+<html lang="ja" data-th="planner"><head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
@@ -357,7 +357,7 @@ body{overflow-x:clip}
 .lrow .t,.lrow .a{line-height:22px}
 .ver{font-size:12px;font-weight:500;color:var(--mute);margin-left:6px}
 
-/* themes: Apple (default), receipt */
+/* themes: planner (default), receipt */
 .gd,.cat-total{display:none}
 .sec{font-size:12px;color:var(--mute);margin:16px 4px 6px}
 .themes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
@@ -366,9 +366,6 @@ body{overflow-x:clip}
 .th.on{color:var(--ink);font-weight:600}
 .th.on .thp{box-shadow:0 0 0 2px var(--accent)}
 .thp::before,.thp::after{content:"";position:absolute}
-.tp-apple{background:#f2f2f7}
-.tp-apple::before{left:12%;right:12%;top:14%;height:46%;border-radius:7px;background:#fff}
-.tp-apple::after{left:20%;top:24%;width:14px;height:14px;border-radius:50%;background:#007AFF;box-shadow:0 18px 0 -2px #007AFF}
 .tp-receipt{background:#cfcbc2}
 .tp-receipt::before{left:20%;right:20%;top:0;bottom:0;background:#fdfcf7;background-image:repeating-linear-gradient(180deg,transparent 0 9px,#cfcabb 9px 10px);background-size:100% 100%;opacity:1}
 .tp-receipt::after{left:28%;right:28%;top:22%;height:34%;background:repeating-linear-gradient(90deg,#26251f 0 2px,transparent 2px 4px,#26251f 4px 5px,transparent 5px 8px);opacity:.8}
@@ -546,7 +543,7 @@ body{overflow-x:clip}
 </div></div>
 
 <section class="sheet" id="setSheet" aria-label="設定">
-  <div class="sh-h"><h2>設定 <small class="ver">v52</small></h2><button class="ib" data-close aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="sh-h"><h2>設定 <small class="ver">v53</small></h2><button class="ib" data-close aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="sec" style="margin-top:0">テーマ</div><div class="themes" id="themes"></div>
   <div class="sec">GitHub 同期</div>
   <label class="fld"><span>リポジトリ</span><input id="srepo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="owner/repo"></label>
@@ -554,7 +551,7 @@ body{overflow-x:clip}
   <div class="acts"><button class="btn pri" id="ssave">保存して同期</button><button class="btn" id="syncNow">今すぐ同期</button></div>
   <div class="note-s" id="syncNote"></div>
   <p class="hint">記録はまずこの端末に保存され、リポジトリの data.json と同期されます。オンラインに戻ったときにも同期されます。</p>
-  <p class="hint" id="verLine">バージョン v52 · 2026-11-10</p>
+  <p class="hint" id="verLine">バージョン v53 · 2026-11-18</p>
 </section>
 
 <script>
@@ -567,8 +564,8 @@ const LS = {
 };
 const CATS = ['Eating', 'Drinking', 'Transport', 'Goods', 'Medical', 'Groceries', 'Other'];
 const LABELS = {Eating: '食事', Drinking: '飲み物', Transport: '交通', Goods: 'ショッピング', Medical: '医療', Groceries: '家用', Other: 'その他'};
-const THEMES = [['apple', 'Apple'], ['receipt', 'レシート'], ['planner', '手帳']];
-let theme = LS.get('theme', 'apple'); if (!THEMES.some(t => t[0] === theme)) theme = 'apple';
+const THEMES = [['planner', '手帳'], ['receipt', 'レシート']];
+let theme = LS.get('theme', 'planner'); if (!THEMES.some(t => t[0] === theme)) theme = 'planner';
 const applyTheme = () => document.documentElement.setAttribute('data-th', theme);
 applyTheme();
 const TAG = {Eating: '食', Drinking: '飲', Transport: '交', Goods: '買', Medical: '医', Groceries: '家', Other: '他'};
