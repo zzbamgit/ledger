@@ -785,6 +785,111 @@ body{overflow-x:clip}
 :root[data-th="riso"] .sheet .fld input{border-radius:0;background:var(--tint);color:var(--bl)}
 :root[data-th="riso"] .btn{border-radius:0;background:var(--tint);color:var(--bl)}
 :root[data-th="riso"] .btn.pri{background:var(--pk);color:var(--on-accent)}
+
+/* ---- sheet (表計算): a spreadsheet — formula bar, month sheet tabs, category and calendar ranges, entries table with row numbers ---- */
+.tp-sheet{background:linear-gradient(#d4d4d4 1px,#0000 1px) 0 -1px/100% 18px,linear-gradient(90deg,#d4d4d4 1px,#0000 1px) -1px 0/30px 100%,#fff}
+.tp-sheet::before{left:0;right:0;top:0;height:17px;background:#f0f0f0;border-bottom:1px solid #c8c8c8}
+.tp-sheet::after{left:29px;top:53px;width:62px;height:19px;box-sizing:border-box;border:2px solid #1e8e3e;background:#e8f5ec}
+:root[data-th="sheet"]{--cell:#fff;--grid:#d9d9d9;--hd:#f3f3f3;--hd-ink:#6e6e6e;--sel:#1e8e3e;--selbg:#e8f5ec;--grow:#f7f7f7;--cols:26px 30px minmax(0,1fr) minmax(0,.62fr) 76px;--bg:#fff;--card:#fff;--card-lt:#fff;--grp:#fff;--ink:#1f1f1f;--ink2:#1f1f1f;--mute:#6e6e6e;--sep:#d9d9d9;--sep-l:#e6e6e6;--accent:#1e8e3e;--on-accent:#fff;--tint:#e8f5ec;--tint-ink:#1e8e3e;--bar:#1e8e3e;--fill:#0000000d;--glass:#f7f7f7;--glass-w:#fff;--scrim:rgba(0,0,0,.3);--danger:#d93025;background:#fff}
+@media (prefers-color-scheme:dark){:root[data-th="sheet"]{--cell:#1c1c1e;--grid:#3a3a3c;--hd:#2a2a2c;--hd-ink:#9a9a9e;--sel:#34a853;--selbg:#173d24;--grow:#242426;--bg:#1c1c1e;--card:#1c1c1e;--card-lt:#1c1c1e;--grp:#1c1c1e;--ink:#ececec;--ink2:#ececec;--mute:#9a9a9e;--sep:#3a3a3c;--sep-l:#2c2c2e;--accent:#34a853;--on-accent:#fff;--tint:#173d24;--tint-ink:#5dd27f;--bar:#34a853;--fill:#ffffff12;--glass:#232325;--glass-w:#232325;--scrim:rgba(0,0,0,.6);--danger:#ff6b5e;color-scheme:dark;background:#1c1c1e}}
+:root[data-th="sheet"] .k-Eating{--kc:#fde7c8}
+:root[data-th="sheet"] .k-Drinking{--kc:#d4effa}
+:root[data-th="sheet"] .k-Transport{--kc:#dcefe0}
+:root[data-th="sheet"] .k-Goods{--kc:#e9e0fb}
+:root[data-th="sheet"] .k-Medical{--kc:#fbdde8}
+:root[data-th="sheet"] .k-Groceries{--kc:#f1e6d6}
+:root[data-th="sheet"] .k-Other{--kc:#ebebeb}
+@media (prefers-color-scheme:dark){
+:root[data-th="sheet"] .k-Eating{--kc:#4a3416}
+:root[data-th="sheet"] .k-Drinking{--kc:#10394b}
+:root[data-th="sheet"] .k-Transport{--kc:#1b3d26}
+:root[data-th="sheet"] .k-Goods{--kc:#33284d}
+:root[data-th="sheet"] .k-Medical{--kc:#4a1f31}
+:root[data-th="sheet"] .k-Groceries{--kc:#3d3222}
+:root[data-th="sheet"] .k-Other{--kc:#333336}}
+/* formula bar: name box and formula (the current filter, or the month as a DATE) */
+:root[data-th="sheet"] .top{background:var(--glass);-webkit-backdrop-filter:none;backdrop-filter:none;border-bottom:.5px solid var(--grid)}
+:root[data-th="sheet"] .top-in{grid-template-columns:minmax(0,1fr) auto;padding:0 4px 0 8px}
+:root[data-th="sheet"] .hl{display:flex;align-items:center;gap:6px;min-width:0}
+:root[data-th="sheet"] .hl::before{content:attr(data-n);flex:none;min-width:40px;padding:4px 6px;box-sizing:border-box;border:.5px solid var(--grid);border-radius:4px;background:var(--cell);font-size:12px;line-height:1.2;text-align:center;color:var(--ink)}
+:root[data-th="sheet"] .hl::after{content:"fx   " attr(data-f);flex:1;min-width:0;padding:4px 8px;border:.5px solid var(--grid);border-radius:4px;background:var(--cell);font:12px/1.2 ui-monospace,"SF Mono",Menlo,monospace;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+:root[data-th="sheet"] .ib{color:var(--ink)}
+:root[data-th="sheet"] .dot{background:var(--danger)}
+/* month sheet tabs */
+:root[data-th="sheet"] .ttlwrap{position:sticky;top:calc(44px + env(safe-area-inset-top,0px));z-index:19;max-width:none;padding:0;background:var(--hd);border-bottom:.5px solid var(--grid)}
+:root[data-th="sheet"] .ttlrow{max-width:560px;height:34px;margin-inline:auto;align-items:flex-end;gap:2px;padding:0 8px}
+:root[data-th="sheet"] .ttl{order:2;margin:0 0 -.5px;padding:7px 18px 8px;font-size:13px;line-height:1.2;font-weight:600;letter-spacing:0;white-space:nowrap;color:var(--sel);background:var(--cell);border:.5px solid var(--grid);border-bottom-color:var(--cell);border-radius:6px 6px 0 0;box-shadow:inset 0 2px 0 var(--sel)}
+:root[data-th="sheet"] .ttl :is(.ly,.ls,.lm){display:none}
+:root[data-th="sheet"] .ttl .lj{display:inline}
+:root[data-th="sheet"] .ttlrow .ib{display:block;width:auto;height:auto;margin:0 0 4px;padding:4px 12px;border-radius:5px;color:var(--hd-ink);font-size:13px;line-height:1.2}
+:root[data-th="sheet"] .ttlrow .ib svg{display:none}
+:root[data-th="sheet"] #prev{order:1}
+:root[data-th="sheet"] #next{order:3}
+:root[data-th="sheet"] #prev::before,:root[data-th="sheet"] #next::before{content:attr(data-lbl)}
+:root[data-th="sheet"] main{padding:10px 0 110px;counter-reset:row}
+/* category totals: a range of cells, category cell tinted */
+:root[data-th="sheet"] .cats2{gap:0;margin:0;padding:0;background:var(--cell);border-radius:0;border-top:.5px solid var(--grid)}
+:root[data-th="sheet"] .catr{display:grid;grid-template-columns:30px minmax(0,1fr) 74px;align-items:stretch;gap:0;padding:0;border-radius:0;min-height:30px}
+:root[data-th="sheet"] .catr>*{display:flex;align-items:center;padding:5px 7px;font-size:13px;line-height:18px;border-right:.5px solid var(--grid);border-bottom:.5px solid var(--grid)}
+:root[data-th="sheet"] .catr .ci{position:relative;width:auto;height:auto;padding:0}
+:root[data-th="sheet"] .catr .nm{color:var(--ink)}
+:root[data-th="sheet"] .catr .am{justify-content:flex-end;padding-inline:6px;font-weight:400;font-variant-numeric:tabular-nums}
+:root[data-th="sheet"] .catr.sel{box-shadow:none;outline:2px solid var(--sel);outline-offset:-1.5px;position:relative;z-index:1}
+:root[data-th="sheet"] .catr.sel .nm{font-weight:600}
+:root[data-th="sheet"] .tk{position:absolute;inset:0;display:grid;place-items:center;background:var(--kc,transparent);color:var(--ink);font-size:12px;font-weight:600;font-style:normal}
+:root[data-th="sheet"] .calbar{justify-content:flex-start;margin:6px 0 0;padding-left:5px}
+:root[data-th="sheet"] .calbar button{width:20px;height:20px;border-radius:3px;box-shadow:inset 0 0 0 .5px var(--hd-ink);background:var(--cell);color:var(--hd-ink)}
+:root[data-th="sheet"] .calbar button svg{display:none}
+:root[data-th="sheet"] .calbar button::before{content:"+";font-size:15px;line-height:1}
+:root[data-th="sheet"] .calbar.open button::before{content:"−"}
+/* calendar: a 7-column range; date small at top left, amount right-aligned like a number cell */
+:root[data-th="sheet"] .calwrap{width:auto;margin:6px 0 0;background:none}
+:root[data-th="sheet"] .cal-h{padding:0;background:var(--hd);border-top:.5px solid var(--grid)}
+:root[data-th="sheet"] .cal-h span{padding:3px 0;font-size:11px;font-weight:500;color:var(--hd-ink);border-right:.5px solid var(--grid);border-bottom:.5px solid var(--grid)}
+:root[data-th="sheet"] .cal-g{background:var(--cell);border:0}
+:root[data-th="sheet"] .cal-g .cal-d,:root[data-th="sheet"] .cal-g .cal-d:nth-child(n+8){display:block;position:relative;min-height:36px;padding:0;border-radius:0;background:none;box-shadow:inset -.5px -.5px 0 var(--grid)}
+:root[data-th="sheet"] :is(.cal-d,.cal-d:nth-child(7n+1),.cal-d:nth-child(7n)) .n{position:absolute;left:3px;top:2px;min-width:0;height:auto;padding:0;line-height:1.2;font-size:11px;font-weight:400;color:var(--hd-ink);border-radius:0;background:none;box-shadow:none;transform:none}
+:root[data-th="sheet"] .cal-g .cal-d .v{position:absolute;right:4px;bottom:3px;margin:0;font-size:12px;font-weight:400;line-height:1.2;color:var(--ink);font-variant-numeric:tabular-nums}
+:root[data-th="sheet"] .cal-g .cal-d.today{background:var(--selbg)}
+:root[data-th="sheet"] .cal-d.today .n{color:var(--sel);font-weight:700}
+:root[data-th="sheet"] .cal-g .cal-d.sel{box-shadow:inset 0 0 0 2px var(--sel)}
+/* entries: frozen header row, row numbers, one cell per field, a subtotal row per day */
+:root[data-th="sheet"] .xh{display:grid;grid-template-columns:var(--cols);position:sticky;top:calc(78px + env(safe-area-inset-top,0px));z-index:5;margin-top:12px;background:var(--hd);border-top:.5px solid var(--grid)}
+:root[data-th="sheet"] .xh>*{padding:3px 7px;font-size:11px;font-style:normal;font-weight:500;line-height:1.3;color:var(--hd-ink);border-right:.5px solid var(--grid);border-bottom:.5px solid var(--grid);white-space:nowrap;overflow:hidden}
+:root[data-th="sheet"] .xh>:last-child{text-align:right}
+:root[data-th="sheet"] .xh>:nth-child(2){padding-inline:0;text-align:center}
+:root[data-th="sheet"] .day{display:grid;grid-template-columns:var(--cols);align-items:stretch;margin:0;padding:0;font-size:13px;font-weight:600;color:var(--ink);background:var(--grow)}
+:root[data-th="sheet"] .dg.today .day{background:var(--selbg)}
+:root[data-th="sheet"] :is(.day,.lrow)::before{counter-increment:row;content:counter(row);grid-column:1;display:flex;align-items:center;justify-content:center;background:var(--hd);color:var(--hd-ink);font-size:11px;font-weight:400;border-right:.5px solid var(--grid);border-bottom:.5px solid var(--grid)}
+:root[data-th="sheet"] .day span{grid-column:2/5;padding:5px 7px;line-height:18px;border-right:.5px solid var(--grid);border-bottom:.5px solid var(--grid)}
+:root[data-th="sheet"] .day b{grid-column:5;padding:5px 7px;text-align:right;font-size:13px;font-weight:600;line-height:18px;color:var(--ink);border-right:.5px solid var(--grid);border-bottom:.5px solid var(--grid)}
+:root[data-th="sheet"] .lines{background:var(--cell);border-radius:0;padding:0}
+:root[data-th="sheet"] .lines .efwrap{margin-inline:0;background:var(--cell);box-shadow:inset 0 -.5px 0 var(--grid)}
+:root[data-th="sheet"] .lrow{grid-template-columns:var(--cols);gap:0;align-items:stretch;padding:0;border-bottom:0;background:var(--cell)}
+:root[data-th="sheet"] .lrow .t{display:contents}
+:root[data-th="sheet"] .lrow :is(.ri,.it,.shop,.a,.inl){display:flex;align-items:center;min-width:0;min-height:30px;margin:0;padding:5px 7px;font-size:13px;line-height:18px;border-right:.5px solid var(--grid);border-bottom:.5px solid var(--grid);border-radius:0;box-sizing:border-box}
+:root[data-th="sheet"] .lrow .ri{grid-column:2;position:relative;top:auto;left:auto;transform:none;width:auto;height:auto;padding:0}
+:root[data-th="sheet"] .lrow .ri::after{inset:0}
+:root[data-th="sheet"] .lrow :is(.it,.inl-it){grid-column:3;overflow-wrap:anywhere}
+:root[data-th="sheet"] .lrow :is(.shop,.inl-shop){grid-column:4;background:none;font-family:inherit;color:var(--mute);white-space:normal;overflow-wrap:anywhere}
+:root[data-th="sheet"] .lrow :is(.a,.inl-amt){grid-column:5;justify-content:flex-end;text-align:right;font-weight:400}
+:root[data-th="sheet"] .lrow:not(:has(.shop,.inl-shop)) :is(.it,.inl-it){grid-column:3/5}
+:root[data-th="sheet"] .lrow .inl{width:auto!important;max-width:none;justify-self:stretch;background:var(--cell);box-shadow:inset 0 0 0 2px var(--sel)}
+:root[data-th="sheet"] .fab{border-radius:10px;background:var(--sel);color:#fff;box-shadow:none}
+:root[data-th="sheet"] .copy{background:var(--sel)}
+:root[data-th="sheet"] .trash{background:#d93025}
+:root[data-th="sheet"] .fbar{margin-inline:8px}
+:root[data-th="sheet"] .fbar button{border-radius:4px;background:var(--cell);box-shadow:inset 0 0 0 .5px var(--grid);color:var(--ink)}
+:root[data-th="sheet"] .empty{padding-inline:20px}
+:root[data-th="sheet"] .efwrap.solo{margin:10px 8px 0;border-radius:6px;background:var(--cell);box-shadow:inset 0 0 0 .5px var(--grid)}
+:root[data-th="sheet"] :is(.ef,.pop) .chip{border-radius:3px;background:var(--kc,var(--cell));box-shadow:inset 0 0 0 .5px var(--grid);color:var(--ink)}
+:root[data-th="sheet"] :is(.ef,.pop) .chip.on{background:var(--kc,var(--selbg));box-shadow:inset 0 0 0 2px var(--sel);color:var(--ink);font-weight:600}
+:root[data-th="sheet"] .dtl{border-radius:3px;background:var(--cell);box-shadow:inset 0 0 0 .5px var(--grid)}
+:root[data-th="sheet"] .pop{background:var(--cell);-webkit-backdrop-filter:none;backdrop-filter:none;border:.5px solid var(--grid);border-radius:6px;box-shadow:none}
+:root[data-th="sheet"] .sheet{background:var(--cell);-webkit-backdrop-filter:none;backdrop-filter:none;border-radius:10px 10px 0 0;box-shadow:none;border-top:.5px solid var(--grid)}
+:root[data-th="sheet"] .sheet .fld input{border-radius:4px;background:var(--cell);box-shadow:inset 0 0 0 .5px var(--grid)}
+:root[data-th="sheet"] .btn{border-radius:5px;background:var(--hd)}
+:root[data-th="sheet"] .btn.pri{background:var(--sel);color:#fff}
 </style>
 </head>
 <body>
@@ -814,7 +919,7 @@ body{overflow-x:clip}
 </div></div>
 
 <section class="sheet" id="setSheet" aria-label="設定">
-  <div class="sh-h"><h2>設定 <small class="ver">v56</small></h2><button class="ib" data-close aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="sh-h"><h2>設定 <small class="ver">v57</small></h2><button class="ib" data-close aria-label="閉じる"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="sec" style="margin-top:0">テーマ</div><div class="themes" id="themes"></div>
   <div class="sec">GitHub 同期</div>
   <label class="fld"><span>リポジトリ</span><input id="srepo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="owner/repo"></label>
@@ -822,7 +927,7 @@ body{overflow-x:clip}
   <div class="acts"><button class="btn pri" id="ssave">保存して同期</button><button class="btn" id="syncNow">今すぐ同期</button></div>
   <div class="note-s" id="syncNote"></div>
   <p class="hint">記録はまずこの端末に保存され、リポジトリの data.json と同期されます。オンラインに戻ったときにも同期されます。</p>
-  <p class="hint" id="verLine">バージョン v56 · 2026-11-18</p>
+  <p class="hint" id="verLine">バージョン v57 · 2026-11-18</p>
 </section>
 
 <script>
@@ -835,7 +940,7 @@ const LS = {
 };
 const CATS = ['Eating', 'Drinking', 'Transport', 'Goods', 'Medical', 'Groceries', 'Other'];
 const LABELS = {Eating: '食事', Drinking: '飲み物', Transport: '交通', Goods: 'ショッピング', Medical: '医療', Groceries: '家用', Other: 'その他'};
-const THEMES = [['planner', '手帳'], ['receipt', 'レシート'], ['swiss', 'スイス'], ['metro', '路線図'], ['riso', 'リソグラフ']];
+const THEMES = [['planner', '手帳'], ['receipt', 'レシート'], ['swiss', 'スイス'], ['metro', '路線図'], ['riso', 'リソグラフ'], ['sheet', '表計算']];
 let theme = LS.get('theme', 'planner'); if (!THEMES.some(t => t[0] === theme)) theme = 'planner';
 const applyTheme = () => document.documentElement.setAttribute('data-th', theme);
 applyTheme();
@@ -896,7 +1001,6 @@ if (!/^\d{4}-\d{2}$/.test(ym)) ym = today().slice(0, 7);
 const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const fmt = n => '¥' + Number(n).toLocaleString('en-US', {maximumFractionDigits: 2});
-const ymLabel = s => `${s.slice(0, 4)}/${s.slice(5)}`;
 const WD = ['日', '月', '火', '水', '木', '金', '土'];
 const dayShort = d => { const [y, m, dd] = d.split('-').map(Number); return `${m}月${dd}日(${WD[new Date(y, m - 1, dd).getDay()]})`; };
 function dayLabel(d){
